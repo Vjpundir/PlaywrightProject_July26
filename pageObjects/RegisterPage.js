@@ -17,7 +17,7 @@ class RegisterPage {
         this.enterZipCode = page.locator("#zipcode");
         this.enterMobileNumber = page.locator("#mobile_number");
         this.createAccountBtn = page.getByRole('button', { name: 'Create Account' });
-
+        this.continueButton = page.getByRole('link', { name: 'Continue' });
 
     }
     //Method
@@ -68,39 +68,48 @@ class RegisterPage {
     }
     async fillCompany() {
         await this.enterCompany.fill("Bayone");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
 
     }
 
     async fillAddressOne() {
         await this.enterAddress1.fill("Sector 14");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
     }
     async fillAddressTwo() {
         await this.enterAddress2.fill("Old dlf ggn");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
     }
     async fillState() {
         await this.enterState.fill("haryana");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
     }
 
     async fillCity() {
         await this.enterCity.fill("Gurgaon");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
     }
     async fillPostalCode() {
         await this.enterZipCode.fill("10101");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
     }
     async fillMobileNumber() {
         await this.enterMobileNumber.fill("9984847231");
-        await this.page.keyboard.press("Enter");
+        //await this.page.keyboard.press("Enter");
     }
 
-    async clickCreateAccount() {
-        await this.createAccountBtn.click();
-    }
-};
+   async clickCreateAccount() {
+    await this.createAccountBtn.waitFor({ state: 'visible' });
+    await Promise.all([
+      this.page.waitForNavigation({ waitUntil: 'load' }),
+      this.createAccountBtn.click()
+    ]);
+ }
+
+ async continueBtnIsVisible() {
+    return await this.continueButton.isVisible();
+ }
+ 
+}
 
 module.exports = { RegisterPage };

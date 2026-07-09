@@ -17,27 +17,27 @@ test.beforeEach(async ({ page }) => {
 });
 
 
-test.skip('@web Navigate to automation exercise', async ({ page }) => {
+test('@web Navigate to automation exercise', async ({ page }) => {
   console.log("User able to navigate to automation exercise website");
   await expect(await signUpPage.SignUpPageTitle()).toBeVisible();
   console.log("User able to verify the title of the page");
 
 });
 
-test.skip('@web click on sign up button', async ({ page }) => {
+test('@web click on sign up button', async ({ page }) => {
   await signUpPage.ClickSignUpButton();
   console.log("User able to click on sign up button");
   await expect(await signUpPage.SignUpSection()).toBeVisible();
   console.log("User able to verify the sign up section");
 });
 
-test.skip('Fill the sign up form', async ({ page }) => {
+test('Fill the sign up form', async ({ page }) => {
   await signUpPage.ClickSignUpButton();
   await signUpPage.fillSignUpForm(testData.name, testData.email);
   console.log("User able to fill the sign up form");
 });
 
-test.skip('Verify the register page title', async ({ page }) => {
+test('Verify the register page title', async ({ page }) => {
   await signUpPage.ClickSignUpButton();
   await signUpPage.fillSignUpForm(testData.name, testData.email);
   await expect(await signUpPage.RegisterPageTitle()).toBeVisible();
@@ -48,6 +48,7 @@ test('user fill the register form', async ({ page }) => {
 
   await signUpPage.ClickSignUpButton();
   await signUpPage.fillSignUpForm(testData.name, testData.email);
+  await expect(registerPage.selectRadioBtn).toBeVisible();
   await registerPage.selectMrTitle();
   await expect(registerPage.selectRadioBtn).toBeChecked();
   console.log("user able to select the radio button");
@@ -65,9 +66,6 @@ test('user fill the register form', async ({ page }) => {
   await registerPage.fillPostalCode();
   await registerPage.fillMobileNumber();
   await registerPage.clickCreateAccount();
-  
-  //await page.context().browser().close()
+  await expect(await registerPage.continueBtnIsVisible()).toBeTruthy();
 
 });
-
-
