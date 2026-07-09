@@ -1,4 +1,5 @@
 {
     "name": "TestUser",
-    "email":"130test@example.com"
+    "email":"130test@example.com",
+    "age":30
 }
